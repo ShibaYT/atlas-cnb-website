@@ -1,44 +1,46 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import SiteNav from "./components/SiteNav";
-import SiteFooter from "./components/SiteFooter";
+import type { Metadata, Viewport } from "next"
+import { Inter, Playfair_Display } from "next/font/google"
+import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
+  variable: "--font-inter",
+})
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
   subsets: ["latin"],
-});
+  variable: "--font-playfair",
+})
 
 export const metadata: Metadata = {
-  title: "Atlas CNB | FTC Robotics Team Timișoara",
+  title: "Atlas CNB | FTC Robotics Team - Timisoara, Romania",
   description:
-    "Atlas CNB is a Romanian FTC robotics team from Timișoara, passionate about innovation, engineering, and community.",
-};
+    "Atlas CNB is a Romanian FTC (FIRST Tech Challenge) robotics team from Timisoara, Romania. Built to carry the future through innovation, engineering, and community.",
+  keywords: ["FTC", "FIRST Tech Challenge", "robotics", "Timisoara", "Romania", "Atlas CNB", "STEM"],
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="h-full">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-full bg-slate-950 text-slate-50 antialiased`}
-      >
-        <div className="relative min-h-screen overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 -z-20 atlas-starfield opacity-40" />
-          <div className="pointer-events-none absolute inset-0 -z-30 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.22),_transparent_60%),radial-gradient(circle_at_bottom,_rgba(99,102,241,0.24),_transparent_60%)]" />
-
-          <SiteNav />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </div>
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }
