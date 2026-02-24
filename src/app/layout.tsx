@@ -2,15 +2,15 @@ import type { ReactNode } from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Atlas CNB | FTC Robotics Team Timișoara",
+  title: "Atlas CNB | Echipă FTC Robotics Timișoara",
   description:
-    "Atlas CNB is a Romanian FTC robotics team from Timișoara, passionate about innovation, engineering, and community.",
+    "Atlas CNB este o echipă de robotică FTC din Timișoara, România, pasionată de inginerie, inovație și comunitate.",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="h-full bg-slate-950 text-slate-50">
-      <body className="min-h-full antialiased">
+    <html lang="ro">
+      <body style={{ margin: 0, padding: 0, background: "#080603" }}>
         {children}
       </body>
     </html>
