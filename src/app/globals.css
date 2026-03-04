@@ -411,6 +411,62 @@ body {
   border-color: rgba(201, 168, 76, 0.35) !important;
 }
 
+/* === QUIZ === */
+.quiz-progress-track {
+  height: 3px;
+  background: rgba(74, 63, 138, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8b6914, #c9a84c, #f5d78e);
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(201, 168, 76, 0.4);
+}
+
+.quiz-option {
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-option::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.04), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.quiz-option:hover:not(:disabled) {
+  border-color: rgba(201, 168, 76, 0.3) !important;
+  color: #e8d898 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-option:hover:not(:disabled)::before {
+  transform: translateX(100%);
+}
+
+.quiz-option.selected {
+  box-shadow: 0 0 24px rgba(201, 168, 76, 0.15);
+}
+
+@keyframes revealPulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .hamburger {
@@ -446,6 +502,7 @@ body {
     padding: 14px 30px;
   }
 
+  /* ── Hero ── */
   .hero-title {
     font-size: clamp(2.8rem, 14vw, 5rem) !important;
   }
@@ -471,19 +528,35 @@ body {
     text-align: center;
   }
 
+  /* ── About section ── */
+  .about-intro-layout {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    text-align: center;
+  }
+
+  .about-intro-layout>div:first-child {
+    margin: 0 auto;
+    width: 120px !important;
+    height: 120px !important;
+  }
+
   .about-layout {
     grid-template-columns: 1fr !important;
     gap: 40px !important;
   }
 
   .about-cards-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
 
+  /* ── Team ── */
   .team-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 
+  /* ── Gallery ── */
   .gallery-grid {
     grid-template-columns: 1fr 1fr !important;
   }
@@ -492,10 +565,12 @@ body {
     grid-column: span 1 !important;
   }
 
+  /* ── CTA ── */
   .cta-inner {
     padding: 40px 24px !important;
   }
 
+  /* ── Footer ── */
   .footer-inner {
     flex-direction: column;
     text-align: center;
@@ -506,28 +581,52 @@ body {
     justify-content: center;
   }
 
+  /* ── Contact ── */
   .contact-grid {
     grid-template-columns: 1fr !important;
   }
 
+  /* ── Page Hero ── */
   .page-hero {
     padding: 120px 20px 60px;
+  }
+
+  /* ── Quiz CTA on homepage ── */
+  .quiz-cta-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
+
+  .quiz-cta-grid>div:last-child {
+    display: none;
+  }
+
+  .quiz-cta-grid>div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Quiz page ── */
+  .quiz-welcome-depts {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .quiz-result-scores {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .quiz-result-traits {
+    gap: 8px !important;
+  }
+
+  .quiz-dept-pills {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
 @media (max-width: 480px) {
-  .team-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .gallery-grid .gallery-card {
-    grid-column: span 1 !important;
-  }
-
   .hero-title {
     font-size: clamp(2.2rem, 12vw, 3.5rem) !important;
   }
@@ -541,5 +640,52 @@ body {
   .hero-buttons .btn-ghost {
     text-align: center;
     justify-content: center;
+  }
+
+  .about-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .gallery-grid .gallery-card {
+    grid-column: span 1 !important;
+  }
+
+  .quiz-welcome-depts {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .quiz-result-scores {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem) !important;
+  }
+
+  .btn-gold,
+  .btn-ghost {
+    padding: 12px 24px !important;
+    font-size: 0.7rem !important;
+  }
+
+  .cta-inner {
+    padding: 36px 20px !important;
+  }
+
+  .quiz-dept-pills {
+    gap: 6px !important;
+  }
+
+  .quiz-dept-pills>div {
+    padding: 6px 8px !important;
   }
 }

@@ -185,6 +185,112 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div style={{ padding: "8px 0" }}><GoldDivider icon="🏛️" /></div>
+
+      {/* QUIZ CTA */}
+      <section style={{ padding: "60px 24px 80px", maxWidth: 1120, margin: "0 auto" }}>
+        <FadeIn>
+          <div style={{
+            position: "relative", overflow: "hidden", borderRadius: 12,
+            border: "1px solid rgba(201,168,76,0.2)",
+            background: "linear-gradient(135deg, rgba(15,12,32,0.98) 0%, rgba(25,18,50,0.97) 50%, rgba(40,28,70,0.96) 100%)",
+            padding: "56px 40px",
+          }}>
+            {/* Decorative orbs */}
+            <div style={{ position: "absolute", top: -40, right: -40, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(74,63,138,0.2) 0%, transparent 65%)", animation: "orb1 10s ease-in-out infinite", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", bottom: -30, left: -30, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%)", animation: "orb2 13s ease-in-out infinite", pointerEvents: "none" }} />
+
+            {/* Top meander */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0 }}><MeanderLine opacity={0.15} /></div>
+
+            <div style={{
+              display: "grid", gridTemplateColumns: "1fr auto",
+              gap: 40, alignItems: "center", position: "relative", zIndex: 2,
+            }} className="quiz-cta-grid">
+              {/* Text side */}
+              <div>
+                <span className="section-label">— Oracolul lui Atlas —</span>
+                <h2 className="cinzel" style={{
+                  fontSize: "clamp(1.5rem, 3vw, 2.2rem)", fontWeight: 700,
+                  color: "#c9a84c", marginBottom: 14, lineHeight: 1.3,
+                }}>Din ce departament faci parte?</h2>
+                <p style={{
+                  fontSize: "1.1rem", lineHeight: 1.85, color: "#9090c8",
+                  marginBottom: 28, maxWidth: 480,
+                }}>
+                  Răspunde la <span style={{ color: "#c9a84c", fontWeight: 600 }}>10 întrebări</span> despre
+                  personalitatea ta și descoperă care departament ți se potrivește cel mai bine.
+                  Un quiz fun, nu trebuie să știi nimic despre robotică!
+                </p>
+
+                {/* Department mini-icons */}
+                <div style={{ display: "flex", gap: 10, marginBottom: 28 }}>
+                  {[
+                    { icon: "📐", name: "Proiectare" },
+                    { icon: "🔧", name: "Asamblare" },
+                    { icon: "💻", name: "Programare" },
+                    { icon: "📣", name: "Marketing" },
+                  ].map(d => (
+                    <div key={d.name} style={{
+                      padding: "8px 12px", borderRadius: 6,
+                      border: "1px solid rgba(201,168,76,0.1)",
+                      background: "rgba(13,11,26,0.5)",
+                      display: "flex", alignItems: "center", gap: 6,
+                    }}>
+                      <span style={{ fontSize: 16 }}>{d.icon}</span>
+                      <span className="cinzel" style={{
+                        fontSize: "0.6rem", letterSpacing: "0.1em",
+                        color: "#6a6098", textTransform: "uppercase",
+                      }}>{d.name}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <Link href="/quiz" className="btn-gold">
+                  Începe Profeția →
+                </Link>
+              </div>
+
+              {/* Oracle visual */}
+              <div style={{ textAlign: "center" }}>
+                <div style={{ position: "relative", width: 160, height: 160 }}>
+                  <div style={{
+                    position: "absolute", inset: -8, borderRadius: "50%",
+                    border: "1px solid rgba(201,168,76,0.2)",
+                    animation: "spin 20s linear infinite",
+                    backgroundImage: "conic-gradient(from 0deg, transparent 0%, rgba(201,168,76,0.3) 15%, transparent 30%)",
+                    WebkitMask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px))",
+                    mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px))",
+                  }} />
+                  <div style={{
+                    position: "absolute", inset: -14, borderRadius: "50%",
+                    border: "1px dashed rgba(201,168,76,0.12)",
+                    animation: "spinRev 25s linear infinite",
+                  }} />
+                  <div style={{
+                    width: 160, height: 160, borderRadius: "50%",
+                    background: "linear-gradient(135deg, rgba(201,168,76,0.08), rgba(74,63,138,0.2), rgba(30,24,60,0.9))",
+                    border: "2px solid rgba(201,168,76,0.25)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 64,
+                    boxShadow: "0 0 40px rgba(201,168,76,0.1), inset 0 0 30px rgba(74,63,138,0.15)",
+                    animation: "glowPurple 4s ease-in-out infinite",
+                  }}>🏛️</div>
+                </div>
+                <p className="cinzel" style={{
+                  fontSize: "0.65rem", letterSpacing: "0.2em",
+                  color: "#5a5080", textTransform: "uppercase",
+                  marginTop: 20, fontStyle: "italic",
+                }}>&ldquo;Cunoaște-te pe tine însuți&rdquo;</p>
+              </div>
+            </div>
+
+            {/* Bottom meander */}
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}><MeanderLine opacity={0.15} /></div>
+          </div>
+        </FadeIn>
+      </section>
+
       <div style={{ padding: "8px 0" }}><GoldDivider icon="✦" /></div>
 
       {/* CTA — Redesigned */}

@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { FadeIn, MeanderLine, GoldDivider, PageHero } from "@/src/components/ui";
 
 /* ─── DATA ─── */
@@ -93,6 +94,9 @@ const galleryItems = [
 ];
 
 export default function EchipaPage() {
+    const [patrickClicks, setPatrickClicks] = useState(0);
+    const patrickEasterEgg = patrickClicks >= 5;
+
     return (
         <>
             <PageHero label="Eroii" title="Olimpienii Noștri" />
@@ -127,13 +131,17 @@ export default function EchipaPage() {
                                     const isLeader = m.desc.includes("Leader") || m.desc === "Team Leader" || m.desc === "Mentor" || m.desc === "Secretară";
                                     return (
                                         <FadeIn key={m.name} delay={i * 40}>
-                                            <div className="member-card" style={{
-                                                padding: "32px 24px 28px", textAlign: "center", cursor: "default", height: "100%",
+                                            <div className="member-card" onClick={m.name === "Patrick \u0218." ? () => setPatrickClicks(c => c + 1) : undefined} style={{
+                                                padding: "32px 24px 28px", textAlign: "center", cursor: m.name === "Patrick \u0218." ? "pointer" : "default", height: "100%",
                                                 position: "relative",
-                                                background: isLeader
-                                                    ? "linear-gradient(180deg, rgba(201,168,76,0.08) 0%, rgba(20,16,40,0.95) 40%, rgba(30,24,60,0.9) 100%)"
-                                                    : "linear-gradient(135deg, rgba(20,16,40,0.95), rgba(30,24,60,0.9))",
-                                                border: isLeader ? "1px solid rgba(201,168,76,0.4)" : "1px solid rgba(201,168,76,0.12)",
+                                                background: (m.name === "Patrick \u0218." && patrickEasterEgg)
+                                                    ? "linear-gradient(180deg, rgba(201,168,76,0.12) 0%, rgba(20,16,40,0.95) 40%, rgba(30,24,60,0.9) 100%)"
+                                                    : isLeader
+                                                        ? "linear-gradient(180deg, rgba(201,168,76,0.08) 0%, rgba(20,16,40,0.95) 40%, rgba(30,24,60,0.9) 100%)"
+                                                        : "linear-gradient(135deg, rgba(20,16,40,0.95), rgba(30,24,60,0.9))",
+                                                border: (m.name === "Patrick \u0218." && patrickEasterEgg)
+                                                    ? "1px solid rgba(201,168,76,0.6)"
+                                                    : isLeader ? "1px solid rgba(201,168,76,0.4)" : "1px solid rgba(201,168,76,0.12)",
                                                 borderRadius: 8,
                                                 transition: "transform 0.35s, box-shadow 0.35s, border-color 0.35s",
                                                 overflow: "hidden",
@@ -224,6 +232,27 @@ export default function EchipaPage() {
                                                     letterSpacing: "0.08em",
                                                     textTransform: "uppercase",
                                                 }}>{m.desc}</p>
+
+                                                {/* Easter egg for Patrick */}
+                                                {m.name === "Patrick \u0218." && patrickEasterEgg && (
+                                                    <div style={{
+                                                        marginTop: 12,
+                                                        padding: "8px 14px",
+                                                        borderRadius: 6,
+                                                        background: "linear-gradient(135deg, rgba(201,168,76,0.1), rgba(74,63,138,0.15))",
+                                                        border: "1px solid rgba(201,168,76,0.3)",
+                                                        animation: "fadeInUp 0.6s ease forwards",
+                                                    }}>
+                                                        <p style={{
+                                                            fontSize: "0.85rem",
+                                                            color: "#f5d78e",
+                                                            lineHeight: 1.6,
+                                                            margin: 0,
+                                                        }}>
+                                                            ✨Ai descoperit easter egg-ul! Felicitari!💛
+                                                        </p>
+                                                    </div>
+                                                )}
                                             </div>
                                         </FadeIn>
                                     );
